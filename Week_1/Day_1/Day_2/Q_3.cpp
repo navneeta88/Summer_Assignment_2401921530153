@@ -23,5 +23,5 @@ int main(){
     cout<<"max average:"<<result<<endl;
     return 0;
 }
-git config --config user.name "navneeta88"
-git config --config user.email "mohapatra.navneeta26@gmail.com"
+git config --global user.name "navneeta88"
+git config --global user.email "mohapatra.navneet26@gmail.com"
