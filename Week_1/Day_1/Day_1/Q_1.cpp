@@ -3,7 +3,7 @@ using namespace std;
 
 class Solution {
 public:
-    string twoSumExists(vector<int> arr, int target) {
+        string twoSumExists(vector<int> arr, int target) {
             int n = arr.size();
                     vector<pair<int, int>> numsWithIndex;
                             for (int i = 0; i < n; i++) {
