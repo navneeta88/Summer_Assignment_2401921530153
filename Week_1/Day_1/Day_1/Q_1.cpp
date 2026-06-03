@@ -1,61 +1,25 @@
+//Two Sum
 #include <bits/stdc++.h>
 using namespace std;
-
 class Solution {
 public:
-        string twoSumExists(vector<int> arr, int target) {
-            int n = arr.size();
-                    vector<pair<int, int>> numsWithIndex;
-                            for (int i = 0; i < n; i++) {
-                                        numsWithIndex.push_back({arr[i], i});
-                                                }
-                                                        sort(numsWithIndex.begin(), numsWithIndex.end());
-
-                                                                int left = 0, right = n - 1;
-                                                                        while (left < right) {
-                                                                                    int sum = numsWithIndex[left].first + numsWithIndex[right].first;
-                                                                                                if (sum == target) {
-                                                                                                                return "YES";
-                                                                                                                            } else if (sum < target) {
-                                                                                                                                            left++;
-                                                                                                                                                        } else {
-                                                                                                                                                                        right--;
-                                                                                                                                                                                    }
-                                                                                                                                                                                            }
-                                                                                                                                                                                                    return "NO";
-                                                                                                                                                                                                        }
-
-                                                                                                                                                                                                            vector<int> twoSumIndices(vector<int> arr, int target) {
-                                                                                                                                                                                                                    int n = arr.size();
-                                                                                                                                                                                                                            vector<pair<int, int>> numsWithIndex;
-                                                                                                                                                                                                                                    for (int i = 0; i < n; i++) {
-                                                                                                                                                                                                                                                numsWithIndex.push_back({arr[i], i});
-                                                                                                                                                                                                                                                        }
-                                                                                                                                                                                                                                                                sort(numsWithIndex.begin(), numsWithIndex.end());
-
-                                                                                                                                                                                                                                                                        int left = 0, right = n - 1;
-                                                                                                                                                                                                                                                                                while (left < right) {
-                                                                                                                                                                                                                                                                                            int sum = numsWithIndex[left].first + numsWithIndex[right].first;
-                                                                                                                                                                                                                                                                                                        if (sum == target) {
-                                                                                                                                                                                                                                                                                                                        return {numsWithIndex[left].second, numsWithIndex[right].second};
-                                                                                                                                                                                                                                                                                                                                    } else if (sum < target) {
-                                                                                                                                                                                                                                                                                                                                                    left++;
-                                                                                                                                                                                                                                                                                                                                                                } else {
-                                                                                                                                                                                                                                                                                                                                                                                right--;
-                                                                                                                                                                                                                                                                                                                                                                                            }
-                                                                                                                                                                                                                                                                                                                                                                                                    }
-                                                                                                                                                                                                                                                                                                                                                                                                            return {-1, -1};
-                                                                                                                                                                                                                                                                                                                                                                                                                }
-                                                                                                                                                                                                                                                                                                                                                                                                                };
-
-                                                                                                                                                                                                                                                                                                                                                                                                                int main() {
-                                                                                                                                                                                                                                                                                                                                                                                                                    Solution sol;
-                                                                                                                                                                                                                                                                                                                                                                                                                        vector<int> arr = {2, 6, 5, 8, 11};
-                                                                                                                                                                                                                                                                                                                                                                                                                            int target = 14;
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                cout << sol.twoSumExists(arr, target) << "\n";
-                                                                                                                                                                                                                                                                                                                                                                                                                                    vector<int> res = sol.twoSumIndices(arr, target);
-                                                                                                                                                                                                                                                                                                                                                                                                                                        cout << "[" << res[0] << ", " << res[1] << "]\n";
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                            return 0;
-                                                                                                                                                                                                                                                                                                                                                                                                                                            }
+    vector<int> twoSum(vector<int>& nums, int target) {
+        unordered_map<int, int> mp;
+        for (int i = 0; i < nums.size(); i++) {
+            int complement = target - nums[i];
+            if (mp.find(complement) != mp.end()) {
+                return {mp[complement], i};
+            }
+            mp[nums[i]] = i;
+        }
+        return {};
+    }
+};
+int main() {
+    vector<int> nums = {2, 7, 11, 15};
+    int target = 9;
+    Solution obj;
+    vector<int> ans = obj.twoSum(nums, target);
+    cout << ans[0] << " " << ans[1] << endl;
+    return 0;
+}
